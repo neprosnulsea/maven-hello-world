@@ -13,9 +13,9 @@ pipeline {
             steps {
                 echo 'Compiling code'
                 sh '''
-                mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-                cd my-app
-                mvn compile
+                //mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+                //cd my-app
+                //mvn compile
                 java -cp target/classes com.mycompany.app.App
                 mvn clean --quiet
                 ack -a -f
