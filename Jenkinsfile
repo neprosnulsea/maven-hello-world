@@ -1,14 +1,13 @@
 pipeline {
-  agent any {
-    tools {
+  agent any
+  tools {
       maven 'MAVEN'
     }
-    stages {
-      stage('Build') {
-        steps {
+  stages {
+      stage("Stage name") {
+          steps {
           echo 'Hello world'
-        }
+          }
       }
-    }
   }
-        
+}
