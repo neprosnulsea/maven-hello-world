@@ -7,9 +7,14 @@ pipeline {
                 sh 'git clone https://github.com/neprosnulsea/maven-hello-world.git'
             }
         }
-        stage('Test') { 
+        stage('Build') { 
             steps {
-                echo 'Testing application'
+                echo 'Compiling code'
+                sh '''
+                cd my-app
+                mvn compile
+                java -cp target/classes com.mycompany.app.App
+                '''
             }
         }
         stage('Deploy') { 
