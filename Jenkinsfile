@@ -12,8 +12,8 @@ pipeline {
                 echo 'Compiling code'
                 sh '''
                 cd my-app
-                mvn compile
-                java -cp target/classes com.mycompany.app.App
+                mvn package
+                java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
                 '''
             }
         }
