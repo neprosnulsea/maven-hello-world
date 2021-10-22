@@ -1,9 +1,10 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') { 
+        stage('Checkout') { 
             steps {
-                echo 'Building application'
+                echo 'Making copy source code from GIT repository'
+                sh 'git clone https://github.com/neprosnulsea/maven-hello-world.git'
             }
         }
         stage('Test') { 
