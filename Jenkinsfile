@@ -4,7 +4,9 @@ pipeline {
         stage('Checkout') { 
             steps {
                 echo 'Making copy source code from GIT repository'
-                sh 'git https://github.com/neprosnulsea/maven-hello-world.git'
+                sh '''
+                    git clone https://github.com/neprosnulsea/maven-hello-world.git
+                '''
             }
         }
         stage('Build') { 
