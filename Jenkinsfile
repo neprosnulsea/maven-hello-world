@@ -17,6 +17,11 @@ pipeline {
                 cd my-app
                 mvn compile
                 java -cp target/classes com.mycompany.app.App
+                mvn clean --quiet
+                ack -a -f
+                pom.xml
+                src/main/java/com/mycompany/app/App.java
+                src/test/java/com/mycompany/app/AppTest.java
                 '''
             }
         }
