@@ -13,8 +13,13 @@ pipeline {
                 sh '''
                 mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
                 cd my-app
-                mvn package
-                java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+                mvn compile
+                java -cp target/classes com.mycompany.app.App
+                mvn clean --quiet
+                ack -a -f
+                pom.xml
+                src/main/java/com/mycompany/app/App.java
+                src/test/java/com/mycompany/app/AppTest.java
                 '''
             }
         }
