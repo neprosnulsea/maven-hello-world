@@ -7,6 +7,9 @@
   <groupId>com.mycompany.app</groupId>
   <artifactId>my-app</artifactId>
   <version>1.0-SNAPSHOT</version>
+  
+  <groupId>com.sonarqube.example</groupId>
+  <artifactId>sonarqube-maven-example</artifactId>
 
   <name>my-app</name>
   <!-- FIXME change it to the project's website -->
@@ -34,6 +37,11 @@
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.6.0.1398</version>
         </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
@@ -72,4 +80,18 @@
       </plugins>
     </pluginManagement>
   </build>
+  <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Optional URL to server. Default value is http://localhost:9000 -->
+                <sonar.host.url>
+                    http://https://3.109.200.13:9000
+                </sonar.host.url>
+            </properties>
+        </profile>
+    </profiles>
 </project>
