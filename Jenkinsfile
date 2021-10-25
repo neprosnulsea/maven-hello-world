@@ -15,7 +15,6 @@ pipeline {
          steps {
           sh '''
            // mvn clean verify sonar:sonar
-           chown -R jenkins /var/jenkins_home/workspace/Hello_world_Maven_SonarQube@tmp/durable-0bb511eb/
            mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken -Dsonar.host.url=http://192.168.0.37:9000 -Dsonar.projectKey=project -Dsonar.projectName=Hello_world_Maven_SonarQube -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.sources=project/src/main -Dsonar.tests=project/src/test
           '''
          }
