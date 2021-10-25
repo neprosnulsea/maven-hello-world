@@ -19,7 +19,6 @@ pipeline {
         testResults: '*/test-reports/.xml'
       )
     }
-  }
 stage('SonarQube Analysis') {
     def scannerHome = tool 'SonarQube'
       withSonarQubeEnv('SonarQube') {
@@ -35,5 +34,6 @@ stage('SonarQube Analysis') {
         -D sonar.tests=my-app/src/test \
         -D sonar.host.url=http://127.0.0.1:9000/"""
         }
+}
 }
 }
