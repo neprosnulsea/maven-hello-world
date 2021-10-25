@@ -14,8 +14,8 @@ pipeline {
        stage('Sonar') { 
          steps {
           sh '''
-           mvn clean verify sonar:sonar
-           mvn clean install sonar:sonar -Dsonar.host.url=http://sonarqubeserverIP:9000 -Dsonar.projectKey=project -Dsonar.projectName=my-app -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.sources=project/src/main -Dsonar.tests=project/src/test -X
+           // mvn clean verify sonar:sonar
+           mvn clean install sonar:sonar -Dsonar.host.url=http://sonarqubeserverIP:9000 -Dsonar.projectKey=project -Dsonar.projectName=Hello_world_Maven_SonarQube -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.sources=project/src/main -Dsonar.tests=project/src/test
           '''
          }
        }
