@@ -11,7 +11,7 @@ pipeline {
           sh "mvn -Dmaven.test.failure.ignore=true clean package"
           }
        }
-       stage('Sonar') { 
+       <!-- stage('Sonar') { 
          steps {
           sh '''
            // mvn clean verify sonar:sonar
@@ -27,7 +27,13 @@ pipeline {
           -Dsonar.projectVersion=$BUILD_NUMBER
           '''
          }
-       }
+       } -->
+    stage('SonarQube Analysis') {
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar"
+    }
+  }
   }
  post {
        always {
