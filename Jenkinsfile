@@ -15,7 +15,7 @@ pipeline {
          steps {
           sh '''
            // mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
-           mvn sonar:sonar -Dsonar.host.url=http://127.0.0.1:9000 
+           su mvn sonar:sonar -Dsonar.host.url=http://127.0.0.1:9000 
            -Dsonar.login=the-generated-token
           '''
          }
