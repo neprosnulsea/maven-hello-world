@@ -29,10 +29,12 @@ pipeline {
          //}
        //} -->
     stage('SonarQube Analysis') {
+      Steps {
     def mvn = tool 'Default Maven';
     withSonarQubeEnv() {
       sh "${mvn}/bin/mvn clean verify sonar:sonar"
     }
+      }
   }
   }
  post {
