@@ -7,9 +7,6 @@
   <groupId>com.mycompany.app</groupId>
   <artifactId>my-app</artifactId>
   <version>1.0-SNAPSHOT</version>
-  
-  <groupId>com.sonarqube.example</groupId>
-  <artifactId>sonarqube-maven-example</artifactId>
 
   <name>my-app</name>
   <!-- FIXME change it to the project's website -->
