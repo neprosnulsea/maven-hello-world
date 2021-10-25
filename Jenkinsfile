@@ -12,9 +12,11 @@ pipeline {
           }
        }
        stage('Sonar') { 
-       sh '''
-       mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
-       '''
+         steps {
+          sh '''
+           mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
+          '''
+         }
        }
 
   }
