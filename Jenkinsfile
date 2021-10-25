@@ -20,8 +20,10 @@ pipeline {
         // }
       // }
     stage('SonarQube analysis') {
+      steps {
     withSonarQubeEnv(credentialsId: 'bcb0b1d3131b45c7d06f44f5d9d57bdf1f9d3c0c', installationName: 'My SonarQube Server') {
       sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+    }
     }
   }
   }
