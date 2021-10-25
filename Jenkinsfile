@@ -4,13 +4,14 @@ pipeline {
       maven 'MAVEN'
     }
   stages {
-      stage("Build") {
+      stage('Build') {
           steps {
           echo 'STARTING BUILD'
           checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/neprosnulsea/maven-hello-world.git']]])
           sh "mvn -Dmaven.test.failure.ignore=true clean package"
           }
-        stage("SonarQube Analysis") {
+      }
+        stage('SonarQube Analysis') {
     def scannerHome = tool 'SonarQube'
       withSonarQubeEnv('SonarQube') {
       sh """/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube/bin/sonar-scanner \
@@ -26,7 +27,6 @@ pipeline {
         -D sonar.host.url=http://127.0.0.1:9000/"""
         }
 }
-      }
   }
  post {
        always {
