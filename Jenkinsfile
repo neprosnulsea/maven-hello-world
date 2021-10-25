@@ -13,11 +13,10 @@ pipeline {
        }
        stage('Sonar') { 
          steps {
-           withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
           sh '''
             //mvn clean verify sonar:sonar
            // mvn clean verify sonar:sonar -Dsonar.login=94cbfff18355c9d3d09b4d9a2379ec356db16c8d -Dsonar.host.url=http://192.168.0.37:9000 -Dsonar.projectKey=project -Dsonar.projectName=Hello_world_Maven_SonarQube -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.sources=project/src/main -Dsonar.tests=project/src/test
-          mvn clean package sonar:sonar 
+          mvn -B -DskipTests sonar:sonar 
           -Dsonar.sources=.
           -Dsonar.host.url=http://192.168.0.37:9000
           //-Dsonar.login=94cbfff18355c9d3d09b4d9a2379ec356db16c8d
@@ -30,7 +29,6 @@ pipeline {
           -Dsonar.projectName=Hello_world_Maven_SonarQube
           -Dsonar.projectVersion=$BUILD_NUMBER
           '''
-         }
          }
        } 
     //stage('SonarQube_Analysis') {
