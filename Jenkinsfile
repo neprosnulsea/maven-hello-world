@@ -14,7 +14,9 @@ pipeline {
        stage('Sonar') { 
          steps {
           sh '''
-           mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
+           // mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
+           mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 
+           -Dsonar.login=the-generated-token
           '''
          }
        }
