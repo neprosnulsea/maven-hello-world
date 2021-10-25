@@ -19,7 +19,7 @@ pipeline {
         testResults: '*/test-reports/.xml'
       )
     }
-stage('SonarQube Analysis') {
+stage("SonarQube Analysis") {
     def scannerHome = tool 'SonarQube'
       withSonarQubeEnv('SonarQube') {
       sh """/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube/bin/sonar-scanner \
