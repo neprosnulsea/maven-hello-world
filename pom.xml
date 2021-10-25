@@ -50,8 +50,10 @@
              <properties> 
                  <sonar.host.url> 
                      http://192.168.0.37:9000 
-                 </sonar.host.url> 
-             </properties> 
+                 </sonar.host.url>
+                 <sonar.projectKey>Hello_world_Maven_SonarQube</sonar.projectKey>
+             </properties>
+                 
         </profile>
         <profile>
             <id>coverage</id>
