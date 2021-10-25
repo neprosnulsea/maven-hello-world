@@ -15,8 +15,8 @@ pipeline {
          steps {
           sh '''
            mvn clean verify sonar:sonar -Dsonar.login=bcb0b1d3131b45c7d06f44f5d9d57bdf1f9d3c0c
-           mvn sonar:sonar -Dsonar.host.url=http://127.0.0.1:9000
-           -Dsonar.login=bcb0b1d3131b45c7d06f44f5d9d57bdf1f9d3c0c
+           // mvn sonar:sonar -Dsonar.host.url=http://127.0.0.1:9000
+           // -Dsonar.login=bcb0b1d3131b45c7d06f44f5d9d57bdf1f9d3c0c
           '''
          }
        }
