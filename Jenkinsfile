@@ -15,8 +15,7 @@ pipeline {
          steps {
           sh '''
            mvn clean verify sonar:sonar
-           // mvn clean install sonar:sonar
-           mvn clean install sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=the-generated-token -X
+           mvn clean install sonar:sonar -Dsonar.host.url=http://sonarqubeserverIP:9000 -Dsonar.projectKey=project -Dsonar.projectName=my-app -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.sources=project/src/main -Dsonar.tests=project/src/test -X
           '''
          }
        }
