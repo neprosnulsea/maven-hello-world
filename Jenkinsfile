@@ -34,7 +34,7 @@ pipeline {
       //sh "${maven}/bin/mvn clean verify sonar:sonar"
       //sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar -P sonar -Dsonar.host.url=http://192.168.0.37:9000 -Dsonar.jdbc.url=$SONAR_JDBC_URL -Dsonar.jdbc.username=$SONAR_JDBC_USERNAME -Dsonar.jdbc.password=$SONAR_JDBC_PASSWORD'
     //}
-      }
+      //}
   }
   }
  post {
