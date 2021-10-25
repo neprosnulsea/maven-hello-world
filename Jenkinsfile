@@ -15,6 +15,7 @@ pipeline {
          steps {
           sh '''
            mvn clean verify sonar:sonar
+           -Dsonar.login=the-generated-token
            mvn clean install sonar:sonar
            // mvn clean install sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=admin -Dsonar.password=123123 -X
           '''
