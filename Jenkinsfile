@@ -28,7 +28,7 @@ pipeline {
              steps {
                  echo "Sonar Analys"
                      script {
-                       withSonarQubeEnv(credentialsId: '06c56e61f9bd67b6502145f5a249bcc23b31610f', installationName: 'My SonarQube Server') {
+                       withSonarQubeEnv(credentialsId: '06c56e61f9bd67b6502145f5a249bcc23b31610f') {
                                  sh '''
                                     mvn clean verify sonar:sonar \
                                     -Dsonar.projectKey=Hello_world_Maven_SonarQube \
