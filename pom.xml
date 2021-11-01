@@ -9,6 +9,8 @@
   <url>http://maven.apache.org</url>
   <properties>
     <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
+    <sonar.organization>devopsdockerdotnetapp</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
 
   <dependencies>
