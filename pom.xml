@@ -9,8 +9,10 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <!-- This property will be set by the Maven Dependency plugin -->
     <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
+  </properties>
+  <properties>
+    <sonar.projectKey>Hello_world_Maven_SonarQube</sonar.projectKey>
   </properties>
 
   <dependencies>
