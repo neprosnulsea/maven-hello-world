@@ -11,7 +11,6 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/neprosnulsea/maven-hello-world.git']]])
                                     }
                  }
-        }
         stage('Build maven') { 
             steps { 
 
@@ -50,3 +49,4 @@ post {
         }
     }
   }
+}
