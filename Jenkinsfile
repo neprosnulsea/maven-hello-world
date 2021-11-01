@@ -20,9 +20,7 @@ pipeline {
       stage('Build maven') { 
         steps { 
                 echo "BUILD MAVEN"
-                //dir('maven-hello-world/my-app/src/'){
                     sh 'mvn package -DskipTests=true'
-                //}
             }
         }
 
@@ -39,7 +37,7 @@ pipeline {
                                     -Dsonar.login=06c56e61f9bd67b6502145f5a249bcc23b31610f
                                  '''
                             // }
-                     }
+                    // }
                  }
              }
          }
