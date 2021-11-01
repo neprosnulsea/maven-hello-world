@@ -5,13 +5,23 @@ pipeline {
         maven 'Maven'
     }
   stages {
-      stage('Build') {
+      stage('Get App Source Code') {
           steps {
-          echo 'STARTING BUILD'
-          checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/neprosnulsea/maven-hello-world.git']]])
-          sh "mvn -Dmaven.test.failure.ignore=true package"
-          }
-       }
+                echo "===================== CLONE PROJECT'S SOURCE CODE ====================="
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/neprosnulsea/maven-hello-world.git']]])
+                                    }
+                 }
+        }
+        stage('Build maven') { 
+            steps { 
+
+                echo "===================== MAVEN BUILD ====================="
+
+                dir('maven-hello-world/my-app/src'){
+                    sh 'mvn package -DskipTests=true'
+                }
+            }
+        }
        stage('Sonar') { 
          steps {
           sh '''
