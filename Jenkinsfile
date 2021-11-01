@@ -41,12 +41,11 @@ pipeline {
           '''
          }
        } 
-
+  }
 
 post { 
         always { 
             cleanWs()
         }
     }
-  }
 }
