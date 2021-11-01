@@ -11,8 +11,8 @@ pipeline {
                 echo "CLONE CODE FROM GIT"
                 checkout([
                   $class: 'GitSCM', 
-                  branches: [[name: '*/master']], e
-                  xtensions: [], 
+                  branches: [[name: '*/master']], 
+                  extensions: [], 
                   userRemoteConfigs: [[url: 'https://github.com/neprosnulsea/maven-hello-world.git']]])
               }
       }
