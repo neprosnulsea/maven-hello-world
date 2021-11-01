@@ -20,7 +20,7 @@ pipeline {
       stage('Build maven') { 
         steps { 
                 echo "BUILD MAVEN"
-                dir('maven-hello-world/my-app'){
+                dir('maven-hello-world/my-app/src/'){
                     sh 'mvn package -DskipTests=true'
                 }
             }
@@ -29,7 +29,7 @@ pipeline {
        stage('SonarQube analysis') {
              steps {
                  echo "Sonar Analys"
-                 dir('maven-hello-world'){
+                 dir('maven-hello-world/my-app/src/'){
                      script {
                              withSonarQubeEnv('New Sonar Endava') {
                                  sh '''
