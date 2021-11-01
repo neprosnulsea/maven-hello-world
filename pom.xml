@@ -10,8 +10,6 @@
 
   <properties>
     <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
-  </properties>
-  <properties>
     <sonar.projectKey>Hello_world_Maven_SonarQube</sonar.projectKey>
   </properties>
 
