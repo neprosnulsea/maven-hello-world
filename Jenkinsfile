@@ -1,70 +1,53 @@
 pipeline {
-
-    tools {
-        jdk 'JDK_8u221'
-        jdk 'JDK_8u60'
-        maven 'Maven 3.6.3'
-        maven 'Maven 3.0.5'
+  agent any
+  tools {
+        jdk 'jdk'
+        maven 'Maven'
     }
-
-
-    stages { 
-       
-         stage('Get App Source Code') {
-            steps {
-                echo "===================== CLONE PROJECT'S SOURCE CODE ====================="
+  stages {
+      stage('Get App Source Code') 
+      {
+        steps {
+                echo "CLONE CODE FROM GIT"
                 checkout([
-                    $class: 'GitSCM',
-                    doGenerateSubmoduleConfigurations: false,
-                    userRemoteConfigs: [[
-                    url: 'https://bitbucket.endava.com/scm/jjmt/java-migration-test.git',
-                    credentialsId: "19921a88-81f3-4684-898a-80aba717b08b"
-                    ]],
-                    branches: [ [name: '*/master'] ]
-                ])
-            }
-        }
+                  $class: 'GitSCM', 
+                  branches: [[name: '*/master']], 
+                  extensions: [], 
+                  userRemoteConfigs: [[url: 'https://github.com/neprosnulsea/maven-hello-world.git']]])
+              }
+      }
 
-         stage('Build maven') { 
-            steps { 
-
-                echo "===================== MAVEN BUILD ====================="
-
-                dir('maven-hello-world-master/my-app'){
+      stage('Build maven') { 
+        steps { 
+                echo "BUILD MAVEN"
+                dir('maven-hello-world'){
                     sh 'mvn package -DskipTests=true'
                 }
             }
         }
 
-           stage('SonarQube analysis') {
+       stage('SonarQube analysis') {
              steps {
-                 echo "===================== SONARQUBE ANALYSIS ====================="
-
-                 dir('maven-hello-world-master/my-app'){
+                 echo "Sonar Analys"
+                 dir('maven-hello-world'){
                      script {
-
                              withSonarQubeEnv('New Sonar Endava') {
-                                 sh 'mvn sonar:sonar ' +
-                                 //'-Dsonar.sources=. ' +
-                                 '-Dsonar.projectKey=JMT ' +
-                                 '-Dsonar.login=72d6a54735e8e9d91dbc3448eaeafcf4366b8923 ' +
-                                 '-Dsonar.java.binaries=. ' +
-                                 '-DskipTests=true' +
-                                 '-Dsonar.cfamily.build-wrapper-output=bw-output ' +
-                                 '-Dsonar.projectName="Java Migration Test" ' +
-                                 '-Dsonar.projectVersion=$BUILD_NUMBER'
+                                 sh '''
+                                    mvn clean verify sonar:sonar \
+                                    -Dsonar.projectKey=maven-hello-world \
+                                    -Dsonar.host.url=http://127.0.0.1:9000 \
+                                    -Dsonar.login=06c56e61f9bd67b6502145f5a249bcc23b31610f
+                                 '''
                              }
                      }
                  }
              }
          }
+  }
 
-    }  
-
-    post { 
+post { 
         always { 
             cleanWs()
         }
     }
-   
 }
