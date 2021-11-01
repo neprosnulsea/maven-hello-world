@@ -28,7 +28,6 @@ pipeline {
              steps {
                  echo "Sonar Analys"
                      script {
-                       withSonarQubeEnv(credentialsId: '06c56e61f9bd67b6502145f5a249bcc23b31610f') {
                                  sh '''
                                     mvn clean verify sonar:sonar \
                                     -Dsonar.projectKey=Hello_world_Maven_SonarQube \
@@ -36,7 +35,6 @@ pipeline {
                                     -Dsonar.login=06c56e61f9bd67b6502145f5a249bcc23b31610f \
                                     -Dsonar.password=123123 \
                                  '''
-                       }
                        }
              }
          }
