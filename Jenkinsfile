@@ -5,42 +5,44 @@ pipeline {
         maven 'Maven'
     }
   stages {
-      stage('Get App Source Code') {
-          steps {
-                echo "===================== CLONE PROJECT'S SOURCE CODE ====================="
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/neprosnulsea/maven-hello-world.git']]])
-                                    }
-                 }
-        stage('Build maven') { 
-            steps { 
+      stage('Get App Source Code') 
+      {
+        steps {
+                echo "CLONE CODE FROM GIT"
+                checkout([
+                  $class: 'GitSCM', 
+                  branches: [[name: '*/master']], e
+                  xtensions: [], 
+                  userRemoteConfigs: [[url: 'https://github.com/neprosnulsea/maven-hello-world.git']]])
+              }
+      }
 
-                echo "===================== MAVEN BUILD ====================="
-
+      stage('Build maven') { 
+        steps { 
+                echo "BUILD MAVEN"
                 dir('maven-hello-world/my-app/src'){
                     sh 'mvn package -DskipTests=true'
                 }
             }
         }
-       stage('Sonar') { 
-         steps {
-          sh '''
-            //mvn clean verify sonar:sonar
-           // mvn clean verify sonar:sonar -Dsonar.login=94cbfff18355c9d3d09b4d9a2379ec356db16c8d -Dsonar.host.url=http://192.168.0.37:9000 -Dsonar.projectKey=project -Dsonar.projectName=Hello_world_Maven_SonarQube -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.sources=project/src/main -Dsonar.tests=project/src/test
-          mvn clean verify sonar:sonar 
-          -Dsonar.sources=.
-          -Dsonar.host.url=http://192.168.0.37:9000
-          -Dsonar.login=94cbfff18355c9d3d09b4d9a2379ec356db16c8d
-          //-Dsonar.login=admin
-          -Dsonar.password=123123
-          -Dsonar.projectKey=Hello_world_Maven_SonarQube
-          -Dsonar.java.binaries=. 
-          -DskipTests=true
-          -Dsonar.cfamily.build-wrapper-output=bw-output 
-          -Dsonar.projectName=Hello_world_Maven_SonarQube
-          -Dsonar.projectVersion=$BUILD_NUMBER
-          '''
+
+       stage('SonarQube analysis') {
+             steps {
+                 echo "Sonar Analys"
+                 dir('maven-hello-world-master/my-app'){
+                     script {
+                             withSonarQubeEnv('New Sonar Endava') {
+                                 sh '''
+                                    mvn clean verify sonar:sonar \
+                                    -Dsonar.projectKey=maven-hello-world \
+                                    -Dsonar.host.url=http://127.0.0.1:9000 \
+                                    -Dsonar.login=06c56e61f9bd67b6502145f5a249bcc23b31610f
+                                 '''
+                             }
+                     }
+                 }
+             }
          }
-       } 
   }
 
 post { 
