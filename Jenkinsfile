@@ -32,7 +32,8 @@ pipeline {
                dir('maven-hello-world-master/my-app') {
                      script {
                                  sh '''
-                                    mvn clean verify sonar:sonar \
+                                    mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar \
+                                    // mvn clean verify sonar:sonar \
                                     -Dsonar.projectKey=Hello_world_Maven_SonarQube \
                                    // -Dsonar.host.url=http://127.0.0.1:9000/ \
                                     -Dsonar.password=28445b7ca0a6dee74ea1bb9c4d67e6f550cfc4f2
