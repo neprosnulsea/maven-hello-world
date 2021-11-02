@@ -20,7 +20,7 @@ pipeline {
       stage('Build maven') { 
         steps { 
                 echo "BUILD MAVEN"
-                dir('/my-app'){
+          dir('maven-hello-world/my-app') {
                     sh 'mvn package -DskipTests=true'
                 }
                 }
