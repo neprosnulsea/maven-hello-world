@@ -31,7 +31,7 @@ pipeline {
                                  sh '''
                                     mvn clean verify sonar:sonar \
   -Dsonar.projectKey=maven-hello-world1 \
-  -Dsonar.host.url=http://127.0.0.1:9000 \
+  -Dsonar.host.url=http://172.27.160.1:9000 \
   -Dsonar.login=9ba97ca33379c21d31ce38f43e631bbaa21d03bf
                                  '''
                        }
