@@ -30,15 +30,15 @@ pipeline {
              steps {
                  echo "Sonar Analys"
                dir('maven-hello-world-master/my-app') {
-                 withSonarQubeEnv(credentialsId: '28445b7ca0a6dee74ea1bb9c4d67e6f550cfc4f2', installationName: 'Sonar') {
                      script {
                                  sh '''
                                     mvn clean verify sonar:sonar \
                                     -Dsonar.projectKey=Hello_world_Maven_SonarQube \
-                                    -Dsonar.host.url=http://127.0.0.1:9000 \
-                                    -Dsonar.login=28445b7ca0a6dee74ea1bb9c4d67e6f550cfc4f2 -X
+                                    -Dsonar.host.url=http://172.27.160.1:9000/ \
+                                    // -Dsonar.login=28445b7ca0a6dee74ea1bb9c4d67e6f550cfc4f2 -X
+                                    -Dsonar.login=admin \
+                                    -Dsonar.password=123123
                                  '''
-                     }  
                      }
                }
              }
