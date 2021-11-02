@@ -29,6 +29,7 @@ pipeline {
        stage('SonarQube analysis') {
              steps {
                  echo "Sonar Analys"
+               dir('maven-hello-world-master/my-app') {
                      script {
                                  sh '''
                                     mvn clean verify sonar:sonar -Dsonar.login=9ba97ca33379c21d31ce38f43e631bbaa21d03bf
@@ -38,6 +39,7 @@ pipeline {
                                     -Dsonar.login=28445b7ca0a6dee74ea1bb9c4d67e6f550cfc4f2
                                  '''
                        }
+               }
              }
          }
   }
