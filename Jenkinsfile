@@ -33,7 +33,6 @@ pipeline {
                      script {
                                  sh '''
                                     mvn clean install
-                                    mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
                                     mvn clean verify sonar:sonar \
                                     -Dsonar.projectKey=Hello_world_Maven_SonarQube \
                                     -Dsonar.host.url=http://127.0.0.1:9000 \
