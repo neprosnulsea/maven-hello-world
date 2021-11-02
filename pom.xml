@@ -8,8 +8,25 @@
   <name>my-app</name>
   <url>http://maven.apache.org</url>
 
+<settings>
+    <pluginGroups>
+        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+    </pluginGroups>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>
+                  http://172.27.160.1:9000/
+                </sonar.host.url>
+            </properties>
+        </profile>
+     </profiles>
+</settings>
   <properties>
-    <!-- This property will be set by the Maven Dependency plugin -->
     <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
   </properties>
 
@@ -82,7 +99,6 @@
         </executions>
       </plugin>
       <plugin>
-        <!-- This plugin will set the properties values using dependency information -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>2.3</version>
@@ -100,12 +116,10 @@
           <source>1.8</source>
           <target>1.8</target>
           <fork>true</fork>
-          <!-- Add all the checkers you want to enable here -->
           <annotationProcessors>
             <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
           </annotationProcessors>
           <compilerArgs>
-            <!-- location of the annotated JDK, which comes from a Maven dependency -->
             <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
           </compilerArgs>
         </configuration>
