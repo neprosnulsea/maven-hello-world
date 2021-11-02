@@ -3,7 +3,6 @@ pipeline {
   tools {
         jdk 'jdk'
         maven 'maven'
-        sonar 'sonar'
     }
   stages {
       stage('Get App Source Code') 
