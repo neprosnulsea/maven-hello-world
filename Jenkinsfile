@@ -20,8 +20,10 @@ pipeline {
       stage('Build maven') { 
         steps { 
                 echo "BUILD MAVEN"
+                dir('maven-hello-world-master/my-app'){
                     sh 'mvn package -DskipTests=true'
-            }
+                }
+                }
         }
 
        stage('SonarQube analysis') {
