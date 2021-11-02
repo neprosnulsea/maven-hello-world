@@ -29,9 +29,10 @@ pipeline {
                  echo "Sonar Analys"
                      script {
                                  sh '''
-                                    -Dsonar.projectKey=Hello_world_Maven_SonarQube \
-                                    -Dsonar.host.url=http://127.0.0.1:9000 \
-                                    -Dsonar.login=06c56e61f9bd67b6502145f5a249bcc23b31610f
+                                    mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=maven-hello-world1 \
+  -Dsonar.host.url=http://127.0.0.1:9000 \
+  -Dsonar.login=9ba97ca33379c21d31ce38f43e631bbaa21d03bf
                                  '''
                        }
              }
