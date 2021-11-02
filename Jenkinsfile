@@ -31,7 +31,7 @@ pipeline {
                  echo "Sonar Analys"
                dir('maven-hello-world-master/my-app') {
                      script {
-                       withSonarQubeEnv('My SonarQube Server')
+                       withSonarQubeEnv('My SonarQube Server') {
                                  sh '''
                                     mvn clean verify sonar:sonar \
                                     -Dsonar.projectKey=Hello_world_Maven_SonarQube \
