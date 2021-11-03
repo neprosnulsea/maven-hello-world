@@ -94,14 +94,22 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>3.8.0</version>
-    <configuration>
-        <release>11</release>
-    </configuration>
-</plugin>
+       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+         <version>3.8.0</version>
+        <configuration>
+          <release>11</release>
+          <source>1.8</source>
+          <target>1.8</target>
+          <fork>true</fork>
+          <annotationProcessors>
+            <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
+          </annotationProcessors>
+          <compilerArgs>
+            <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
