@@ -19,6 +19,9 @@ pipeline {
             }
         }
         stage('SonarQube') {
+            tools{
+                jdk 'jdk11'
+            }
         environment {
             scannerHome = tool 'sonar'
         } 
