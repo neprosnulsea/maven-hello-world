@@ -2,32 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.example</groupId>
   <artifactId>java-maven-junit-helloworld</artifactId>
   <version>2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-    <!-- This configures the compiler to produce Java 8 class files. -->
-    <!-- The minimum JDK version installed is 8 of course, but newer JDK releases should work too. -->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-
     <junit.jupiter.version>5.2.0</junit.jupiter.version>
     <junit.platform.version>1.2.0</junit.platform.version>
     <hamcrest.version>1.3</hamcrest.version>
     <mockito.version>2.21.0</mockito.version>
     <jacoco.plugin.version>0.8.1</jacoco.plugin.version>
   </properties>
-
   <dependencies>
-    <!-- Testing dependencies. -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -57,12 +48,9 @@
       <version>${mockito.version}</version>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
-
       <plugin>
-        <!-- Configures the compiler. -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
@@ -72,19 +60,12 @@
           </compilerArgs>
         </configuration>
       </plugin>
-
       <plugin>
-        <!-- Unit tests are run by surefire. -->
-        <!-- Classes under src/test/java called *Test are included automatically. -->
-        <!-- Unit tests are run during the test phase. -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.0</version>
       </plugin>
       <plugin>
-        <!-- Integration tests are run by failsafe. -->
-        <!-- Classes under src/test/java called *IT are included automatically. -->
-        <!-- Integration tests are run during the verify phase. -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>2.22.0</version>
@@ -97,12 +78,7 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
-        <!-- Code coverage plugin. -->
-        <!-- This sets up code coverage for the unit tests, the integration tests, -->
-        <!-- and the combined coverage of both. -->
-        <!-- After running a `mvn clean install`, open `target/site/jacoco-both/index.html` in a browser. -->
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>${jacoco.plugin.version}</version>
