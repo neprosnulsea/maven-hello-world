@@ -25,10 +25,10 @@ pipeline {
                 jdk 'jdk11'
             }
         environment {
-            scannerHome = tool 'SonarQube Scanner'
+            scannerHome = tool 'sonar'
         } 
         steps {
-        withSonarQubeEnv(installationName: 'SonarQube') {
+        withSonarQubeEnv(installationName: 'sonar') {
             sh 'mvn sonar:sonar ' +
                 '-Dsonar.host.url=http://172.27.160.1/:9000 ' +
                 '-Dsonar.projectKey=project_test ' +
