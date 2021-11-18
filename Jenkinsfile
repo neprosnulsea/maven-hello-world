@@ -1,8 +1,7 @@
 pipeline {
   agent any
   tools {
-        jdk 'jdk'
-        maven 'maven'
+        maven 'Maven'
     }
   stages {
       stage('Get App Source Code') 
