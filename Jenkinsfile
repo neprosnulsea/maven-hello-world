@@ -2,7 +2,6 @@ pipeline {
     agent any
     tools {
         maven 'maven'
-        jdk 'jdk8'
     }
 
     stages {
@@ -14,6 +13,9 @@ pipeline {
             }
         }
         stage('Maven Build') {
+            tools{
+                jdk 'jdk8'
+            }
             steps {
                 sh 'mvn install'
             }
@@ -22,18 +24,23 @@ pipeline {
             tools{
                 jdk 'jdk11'
             }
-        environment {
-            scannerHome = tool 'sonar'
-        } 
+        //environment {
+            //scannerHome = tool 'SonarQube Scanner'
+        //} 
         steps {
-        withSonarQubeEnv(installationName: 'sonar') {
-                                 sh '''
-                                    mvn clean verify sonar:sonar \
-                                    -Dsonar.projectKey=Hello_world_Maven_SonarQube \
-                                    -Dsonar.host.url=http://172.23.160.41:9000 \
-                                    -Dsonar.login=540ad239c770ad427d4a50196dbd4bf8a2421fed
-                                 '''
-            }   
+        //withSonarQubeEnv(installationName: 'SonarQube') {
+            mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=maven-hello-world \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=540ad239c770ad427d4a50196dbd4bf8a2421fed
+            sh ...
+                mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=maven-hello-world \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=540ad239c770ad427d4a50196dbd4bf8a2421fed
+            
+            ...
+          //  }   
         }
 
     }
