@@ -27,12 +27,10 @@ pipeline {
         } 
         steps {
         withSonarQubeEnv(installationName: 'sonar') {
-            sh 'mvn sonar:sonar ' +
-                '-Dsonar.host.url=http://172.27.160.1:9000 ' +
-                '-Dsonar.projectKey=project_test ' +
-                '-Dsonar.login=540ad239c770ad427d4a50196dbd4bf8a2421fed ' +
-                '-Dsonar.projectName=project_test ' +
-                '-Dsonar.projectVersion=$BUILD_NUMBER'
+            mvn clean verify sonar:sonar \
+            -Dsonar.projectKey=maven-hello-world \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.login=540ad239c770ad427d4a50196dbd4bf8a2421fed
             }   
         }
 
