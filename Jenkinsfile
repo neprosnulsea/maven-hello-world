@@ -24,11 +24,11 @@ pipeline {
             tools{
                 jdk 'jdk11'
             }
-        //environment {
-            //scannerHome = tool 'SonarQube Scanner'
-        //} 
+        environment {
+            scannerHome = tool 'SonarQube Scanner'
+        } 
         steps {
-        //withSonarQubeEnv(installationName: 'SonarQube') {
+        withSonarQubeEnv(installationName: 'SonarQube') {
             sh '''
                 mvn clean verify sonar:sonar \
   -Dsonar.projectKey=maven-hello-world \
@@ -36,7 +36,7 @@ pipeline {
   -Dsonar.login=540ad239c770ad427d4a50196dbd4bf8a2421fed
             
             '''
-          //  }   
+            }   
         }
 
     }
