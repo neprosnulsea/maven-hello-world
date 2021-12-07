@@ -29,13 +29,13 @@ pipeline {
         //} 
         steps {
         //withSonarQubeEnv(installationName: 'SonarQube') {
-            sh ...
+            sh '''
                 mvn clean verify sonar:sonar \
   -Dsonar.projectKey=maven-hello-world \
   -Dsonar.host.url=http://localhost:9000 \
   -Dsonar.login=540ad239c770ad427d4a50196dbd4bf8a2421fed
             
-            ...
+            '''
           //  }   
         }
 
