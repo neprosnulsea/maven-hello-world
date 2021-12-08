@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Clone code from GitHub') {
             steps {
-                echo "===================== CLONE PROJECT'S SOURCE CODE ====================="
+                echo "--------------- Clone code from GitHub ---------------"
                 git branch: 'master',
                 url: 'https://github.com/neprosnulsea/maven-hello-world.git'
                 checkout scm  
@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build the code') {
             steps {
-                echo "===================== MAVEN BUILD ====================="
+                echo "--------------- Build the code ---------------"
                 sh 'mvn package -DskipTests=false'
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         steps {
             withSonarQubeEnv(installationName: 'SonarQube') {
             sh '''
-                echo "===================== SONARQUBE ANALYSIS ====================="
+                echo "--------------- Scan the code via Sonar ---------------"
                 mvn sonar:sonar \
                 -Dsonar.projectKey=maven-hello-world \
                 -Dsonar.host.url=http://172.23.160.41:9000 \
