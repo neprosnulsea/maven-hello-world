@@ -21,9 +21,9 @@ pipeline {
             tools{
                 jdk 'jdk11'
             }
-        environment {
-            scannerHome = tool 'SonarQube Scanner'
-        } 
+        //environment {
+            //scannerHome = tool 'SonarQube Scanner'
+        //} 
         steps {
         //withSonarQubeEnv(installationName: 'SonarQube') {
             sh '''
