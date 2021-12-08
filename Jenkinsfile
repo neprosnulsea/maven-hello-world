@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'maven'
+        jdk 'jdk8'
     }
 
     stages {
@@ -13,9 +14,6 @@ pipeline {
             }
         }
         stage('Maven Build') {
-            tools{
-                jdk 'jdk8'
-            }
             steps {
                 sh 'mvn install'
             }
