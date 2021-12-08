@@ -4,7 +4,6 @@ pipeline {
         maven 'maven'
         jdk 'jdk8'
     }
-
     stages {
         stage('Clone source from Github') {
             steps {
