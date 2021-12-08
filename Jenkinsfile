@@ -25,7 +25,7 @@ pipeline {
             scannerHome = tool 'SonarQube Scanner'
         } 
         steps {
-        withSonarQubeEnv(installationName: 'SonarQube') {
+        //withSonarQubeEnv(installationName: 'SonarQube') {
             sh '''
                 mvn clean verify sonar:sonar \
   -Dsonar.projectKey=maven-hello-world \
@@ -35,7 +35,7 @@ pipeline {
   -Dsonar.java.binaries=. 
             
             '''
-            }   
+            //}   
         }
 
     }
