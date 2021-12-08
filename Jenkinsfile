@@ -16,7 +16,6 @@ pipeline {
         stage('Build the code') {
             steps {
                 echo "===================== MAVEN BUILD ====================="
-                //sh 'mvn install'
                 sh 'mvn package -DskipTests=false'
             }
         }
