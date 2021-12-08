@@ -14,7 +14,9 @@ pipeline {
         }
         stage('Build the code') {
             steps {
-                sh 'mvn install'
+                echo "===================== MAVEN BUILD ====================="
+                //sh 'mvn install'
+                sh 'mvn package -DskipTests=false'
             }
         }
         stage('Scan the code via Sonar') {
@@ -23,6 +25,7 @@ pipeline {
             }
         steps {
             sh '''
+                echo "===================== SONARQUBE ANALYSIS ====================="
                 mvn clean verify sonar:sonar \
                 -Dsonar.projectKey=maven-hello-world \
                 -Dsonar.host.url=http://172.23.160.41:9000 \
