@@ -25,6 +25,7 @@ pipeline {
                 jdk 'jdk11'
             }
         steps {
+            withSonarQubeEnv(installationName: 'SonarQube') {
             sh '''
                 echo "===================== SONARQUBE ANALYSIS ====================="
                 mvn sonar:sonar \
@@ -36,6 +37,7 @@ pipeline {
                 -Dsonar.projectVersion=$BUILD_NUMBER
             
             '''  
+            }
         }
         }
     }
